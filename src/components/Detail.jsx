@@ -19,10 +19,28 @@ const Detail = () => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // You would send this data to the backend here
     console.log('Reserving book:', id, form);
+
+    try {
+      const response = await fetch('http://localhost:3004/reserve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: id,
+          name: form.name,
+          email: form.email,
+          returnDate: form.returnDate
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Reservation failed');
+      }
 
     
     toast.success("Reservation request sent!");
@@ -31,6 +49,10 @@ const Detail = () => {
     setTimeout(() => {
       navigate('/view'); // Adjust route as needed
     }, 2000);
+       
+    }catch (error) {
+      toast.error(`Error: ${error.message}`);
+    }
   };
 
    

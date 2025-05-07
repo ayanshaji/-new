@@ -15,6 +15,7 @@ import Detail from './components/Detail';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserDetails from './components/UserDetails';
 
 
 function App() {
@@ -72,6 +73,8 @@ function App() {
             <Route path="/borrow" element={<BorrowBook books={books} setBooks={setBooks} />} />
             <Route path="/edit/:id" element={<EditBook books={books} setBooks={setBooks} />} />
             <Route path="/details/:id" element={<BookDetails books={books} />} />
+            <Route path="/user" element={<UserDetails />} />
+
           </>
         )}
 

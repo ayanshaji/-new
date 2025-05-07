@@ -31,9 +31,13 @@ const Navbar = ({ isLoggedIn, userRole, onLogout }) => {
               <Button component={Link} to="/borrow" sx={buttonStyle}>
                 Borrow Book
               </Button>
+              <Button component={Link} to="/user" sx={buttonStyle}>
+                UserDetails
+              </Button>
               <Button component="span" sx={buttonStyle} onClick={onLogout}>
                 Logout
               </Button>
+             
             </>
           )}
 
